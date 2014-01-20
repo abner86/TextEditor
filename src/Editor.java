@@ -27,6 +27,7 @@ class Editor extends JFrame implements ActionListener {
     protected JMenuItem openFile = new JMenuItem("Open");
     protected JMenuItem saveFile = new JMenuItem("Save");
     //protected JMenuItem saveAs = new JMenuItem("SaveAs...");
+    protected JMenuItem print = new JMenuItem("Print");
     protected JMenuItem close = new JMenuItem("Exit");
 
     //Edit Menu
@@ -67,6 +68,10 @@ class Editor extends JFrame implements ActionListener {
 //        saveAs.addActionListener(this);
 //        saveAs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK + InputEvent.SHIFT_MASK));
 //        file.add(saveAs);
+
+        print.addActionListener(this);
+        print.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
+        file.add(this.print);
 
         close.addActionListener(this);
         close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, InputEvent.CTRL_MASK));
@@ -129,6 +134,10 @@ class Editor extends JFrame implements ActionListener {
         pasteButton.setText(null);
     }
 
+//    public void tabPane() {
+//        JTabbedPane tabbedPane = new JTabbedPane();
+//    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == close) {
@@ -139,6 +148,11 @@ class Editor extends JFrame implements ActionListener {
             //saveAs.setEnabled(true);
         } else if (e.getSource() == saveFile) {
             saveFile();
+        }
+
+        //print textArea
+        if (e.getSource() == print) {
+            Print.printComponent(textArea);
         }
 
         //creates a new file
