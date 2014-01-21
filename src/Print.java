@@ -31,8 +31,8 @@ public class Print implements Printable {
         if (printerJob.printDialog()) {
             try {
                 printerJob.print();
-            } catch (PrinterException pe) {
-                System.out.println("Error printing: " + pe);
+            } catch (PrinterException e) {
+                System.out.println("Error printing: " + e);
             }
         }
     }
