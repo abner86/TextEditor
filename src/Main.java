@@ -12,7 +12,7 @@ public class Main {
             //JTattoo.jar
             UIManager.setLookAndFeel(new TextureLookAndFeel());
         } catch (Exception e) {
-
+            System.err.println(e.getMessage());
         }
 
         // Schedule a job for the event dispatch thread:

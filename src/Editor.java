@@ -17,7 +17,7 @@ import java.util.Scanner;
  */
 class Editor extends JFrame implements ActionListener {
 
-    protected final JTextArea textArea = new JTextArea();
+    private final JTextArea textArea = new JTextArea();
 
     private JMenuBar menuBar = new JMenuBar();
     private JMenu file = new JMenu("File");
@@ -34,7 +34,6 @@ class Editor extends JFrame implements ActionListener {
     private JMenuItem undo = new JMenuItem();
     private JMenuItem redo = new JMenuItem();
     private JMenuItem copy = new JMenuItem();
-    private JMenuItem paste = new JMenuItem();
     private JMenuItem cut = new JMenuItem();
 
     private boolean changed = false;
@@ -43,6 +42,9 @@ class Editor extends JFrame implements ActionListener {
 
     //Buttons for toolbar
     private JToolBar toolbar = new JToolBar();
+    private JButton newButton = new JButton(new ImageIcon("src/Icons/New_document.png"));
+    private JButton saveButton = new JButton(new ImageIcon("src/Icons/Save.png"));
+    private JButton openButton = new JButton(new ImageIcon("src/Icons/openFile.png"));
     private JButton printButton = new JButton(new ImageIcon("src/Icons/printer.png"));
     private JButton cutButton = new JButton(new ImageIcon("src/Icons/Cut.png"));
     private JButton copyButton = new JButton(new ImageIcon("src/Icons/Copy.png"));
@@ -100,6 +102,8 @@ class Editor extends JFrame implements ActionListener {
         redo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_MASK + InputEvent.SHIFT_MASK));
         edit.add(this.redo);
 
+        edit.addSeparator();
+
         cut.addActionListener(this);
         cut = new JMenuItem(new DefaultEditorKit.CutAction());
         cut.setText("Cut");
@@ -112,11 +116,12 @@ class Editor extends JFrame implements ActionListener {
         copy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
         edit.add(this.copy);
 
+        JMenuItem paste = new JMenuItem();
         paste.addActionListener(this);
         paste = new JMenuItem(new DefaultEditorKit.PasteAction());
         paste.setText("Paste");
         paste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_MASK));
-        edit.add(this.paste);
+        edit.add(paste);
 
         makeToolbar();
     }
@@ -149,7 +154,7 @@ class Editor extends JFrame implements ActionListener {
 
     }
 
-    public JToolBar makeToolbar() {
+    private JToolBar makeToolbar() {
         //TODO: fix the toolbar actionListener. Currently is not doing anything if copy/paste/cut button is press
 
         //Actions
@@ -159,6 +164,40 @@ class Editor extends JFrame implements ActionListener {
 
         //Toolbar
         add(toolbar, BorderLayout.NORTH);
+
+        toolbar.add(newButton);
+        newButton.setToolTipText("New Document");
+        newButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == newButton) {
+                    textArea.setText(" ");
+                }
+            }
+        });
+
+        toolbar.add(openButton);
+        openButton.setToolTipText("Open");
+        openButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == openButton) {
+                    openFile();
+                }
+            }
+        });
+
+        toolbar.add(saveButton);
+        saveButton.setToolTipText("Save");
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == saveButton) {
+                    saveFile();
+                }
+            }
+        });
+        toolbar.addSeparator();
 
         toolbar.add(printButton);
         printButton.setToolTipText("Print");
@@ -240,7 +279,7 @@ class Editor extends JFrame implements ActionListener {
         JFrame frame = new Editor(); //Create and show the GUI
         frame.setTitle("Editor"); // set the title of the window
         frame.setSize(800, 720); //set the initial size of the window
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
