@@ -40,7 +40,7 @@ class Editor extends JFrame implements ActionListener {
 
     JFileChooser dialog = new JFileChooser();
 
-    //Buttons for toolbar
+    //Buttons with Icons for toolbar
     private JToolBar toolbar = new JToolBar();
     private JButton newButton = new JButton(new ImageIcon("src/Icons/New_document.png"));
     private JButton saveButton = new JButton(new ImageIcon("src/Icons/Save.png"));
