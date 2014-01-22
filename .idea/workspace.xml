@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70c25fe2-4a88-4860-ad4e-60aca073feba" name="Default" comment="Initial commit/update&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor.java" afterPath="$PROJECT_DIR$/src/Editor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Print.java" afterPath="$PROJECT_DIR$/src/Print.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Notepad.iws" />
@@ -72,9 +69,8 @@
       <file leaf-file-name="Editor.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Editor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="85" selection-start="1453" selection-end="1453" vertical-scroll-proportion="1.2815534" vertical-offset="0" max-vertical-offset="5166">
+            <state line="8" column="31" selection-start="270" selection-end="270" vertical-scroll-proportion="0.23801653" vertical-offset="0" max-vertical-offset="5166">
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="e#6064#6300#0" expanded="true" />
                 <element signature="e#6289#6290#0" expanded="true" />
                 <element signature="e#6417#6643#0" expanded="true" />
@@ -577,7 +573,7 @@
       <workItem from="1390177918730" duration="420000" />
       <workItem from="1390178419222" duration="1026000" />
       <workItem from="1390238908038" duration="26144000" />
-      <workItem from="1390353397187" duration="1841000" />
+      <workItem from="1390353397187" duration="2097000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit&#10;">
       <created>1390062145907</created>
@@ -607,11 +603,15 @@
       <created>1390284290357</created>
       <updated>1390284290357</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Initial commit/update&#10;">
+      <created>1390355273520</created>
+      <updated>1390355273520</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78484000" />
+    <option name="totallyTimeSpent" value="78740000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="-4" width="1370" height="778" extended-state="6" />
@@ -637,7 +637,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3425926" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Graphical Navigator" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -710,7 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="151" column="12" selection-start="5193" selection-end="5193" vertical-scroll-proportion="0.0" vertical-offset="2718" max-vertical-offset="4554">
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#6064#6300#0" expanded="true" />
             <element signature="e#6289#6290#0" expanded="true" />
             <element signature="e#6417#6643#0" expanded="true" />
@@ -739,7 +738,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="0" selection-start="479" selection-end="479" vertical-scroll-proportion="0.0" vertical-offset="1836" max-vertical-offset="3672">
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#6064#6300#0" expanded="true" />
             <element signature="e#6289#6290#0" expanded="true" />
             <element signature="e#6417#6643#0" expanded="true" />
@@ -761,7 +759,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="55" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="3672">
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#6064#6300#0" expanded="true" />
             <element signature="e#6289#6290#0" expanded="true" />
             <element signature="e#6417#6643#0" expanded="true" />
@@ -783,7 +780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="38" column="36" selection-start="1259" selection-end="1259" vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="3672">
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#6064#6300#0" expanded="true" />
             <element signature="e#6289#6290#0" expanded="true" />
             <element signature="e#6417#6643#0" expanded="true" />
@@ -805,7 +801,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="38" column="36" selection-start="1259" selection-end="1259" vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="3672">
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#6064#6300#0" expanded="true" />
             <element signature="e#6289#6290#0" expanded="true" />
             <element signature="e#6417#6643#0" expanded="true" />
@@ -827,7 +822,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="55" selection-start="730" selection-end="730" vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="3672">
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#6064#6300#0" expanded="true" />
             <element signature="e#6289#6290#0" expanded="true" />
             <element signature="e#6417#6643#0" expanded="true" />
@@ -849,7 +843,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="115" column="0" selection-start="3942" selection-end="3942" vertical-scroll-proportion="0.0" vertical-offset="1926" max-vertical-offset="3636">
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#6064#6300#0" expanded="true" />
             <element signature="e#6289#6290#0" expanded="true" />
             <element signature="e#6417#6643#0" expanded="true" />
@@ -871,7 +864,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="100" column="22" selection-start="3531" selection-end="3531" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="2574">
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#6064#6300#0" expanded="true" />
             <element signature="e#6289#6290#0" expanded="true" />
             <element signature="e#6417#6643#0" expanded="true" />
@@ -893,7 +885,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="100" column="22" selection-start="3531" selection-end="3531" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="2574">
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#6064#6300#0" expanded="true" />
             <element signature="e#6289#6290#0" expanded="true" />
             <element signature="e#6417#6643#0" expanded="true" />
@@ -915,7 +906,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="100" column="22" selection-start="3531" selection-end="3531" vertical-scroll-proportion="0.0" vertical-offset="282" max-vertical-offset="2574">
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#6064#6300#0" expanded="true" />
             <element signature="e#6289#6290#0" expanded="true" />
             <element signature="e#6417#6643#0" expanded="true" />
@@ -937,7 +927,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="100" column="22" selection-start="3533" selection-end="3533" vertical-scroll-proportion="0.0" vertical-offset="1956" max-vertical-offset="2574">
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#6064#6300#0" expanded="true" />
             <element signature="e#6289#6290#0" expanded="true" />
             <element signature="e#6417#6643#0" expanded="true" />
@@ -959,7 +948,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="57" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0" vertical-offset="1956" max-vertical-offset="2574">
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#6064#6300#0" expanded="true" />
             <element signature="e#6289#6290#0" expanded="true" />
             <element signature="e#6417#6643#0" expanded="true" />
@@ -1008,9 +996,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="85" selection-start="1453" selection-end="1453" vertical-scroll-proportion="1.2815534" vertical-offset="0" max-vertical-offset="5166">
+        <state line="8" column="31" selection-start="270" selection-end="270" vertical-scroll-proportion="0.23801653" vertical-offset="0" max-vertical-offset="5166">
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#6064#6300#0" expanded="true" />
             <element signature="e#6289#6290#0" expanded="true" />
             <element signature="e#6417#6643#0" expanded="true" />
