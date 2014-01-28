@@ -1,5 +1,3 @@
-import com.intellij.ui.components.JBScrollPane;
-
 import javax.swing.*;
 import javax.swing.text.DefaultEditorKit;
 import java.awt.*;
@@ -52,7 +50,7 @@ class Editor extends JFrame implements ActionListener {
 
     public Editor() {
         textArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
-        JScrollPane sp = new JBScrollPane(textArea);
+        JScrollPane sp = new JScrollPane(textArea);
 
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(sp);
