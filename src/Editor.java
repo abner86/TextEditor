@@ -1,5 +1,10 @@
 import javax.swing.*;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
 import javax.swing.text.DefaultEditorKit;
+import javax.swing.undo.CannotRedoException;
+import javax.swing.undo.CannotUndoException;
+import javax.swing.undo.UndoManager;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,9 +18,11 @@ import java.util.Scanner;
 /**
  * Created by abner on 1/13/14.
  */
+@SuppressWarnings("UndesirableClassUsage")
 class Editor extends JFrame implements ActionListener {
 
-    private final JTextArea textArea = new JTextArea();
+    protected JTextArea textArea = new JTextArea();
+    protected UndoManager undoManager = new UndoManager(); //for undo and redo function
 
     private JMenuBar menuBar = new JMenuBar();
     private JMenu file = new JMenu("File");
@@ -24,22 +31,21 @@ class Editor extends JFrame implements ActionListener {
     private JMenuItem newFile = new JMenuItem("New");
     private JMenuItem openFile = new JMenuItem("Open");
     private JMenuItem saveFile = new JMenuItem("Save");
-    //protected JMenuItem saveAs = new JMenuItem("SaveAs...");
     private JMenuItem print = new JMenuItem("Print");
     private JMenuItem close = new JMenuItem("Exit");
 
     //Edit Menu
-    private JMenuItem undo = new JMenuItem();
-    private JMenuItem redo = new JMenuItem();
+    private JMenuItem undo = new JMenuItem("Undo");
+    private JMenuItem redo = new JMenuItem("Redo");
     private JMenuItem copy = new JMenuItem();
     private JMenuItem cut = new JMenuItem();
-
-    private boolean changed = false;
 
     JFileChooser dialog = new JFileChooser();
 
     //Buttons with Icons for toolbar
     private JToolBar toolbar = new JToolBar();
+    private JButton undoButton = new JButton(new ImageIcon("src/Icons/Undo.png"));
+    private JButton redoButton = new JButton(new ImageIcon("src/Icons/Redo.png"));
     private JButton newButton = new JButton(new ImageIcon("src/Icons/New_document.png"));
     private JButton saveButton = new JButton(new ImageIcon("src/Icons/Save.png"));
     private JButton openButton = new JButton(new ImageIcon("src/Icons/openFile.png"));
@@ -49,11 +55,28 @@ class Editor extends JFrame implements ActionListener {
     private JButton pasteButton = new JButton(new ImageIcon("src/Icons/Paste.png"));
 
     public Editor() {
-        textArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
+        menuBar = setUpMenu();
+        toolbar = makeToolbar();
+    }
+
+    private JMenuBar setUpMenu() {
+        textArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
         JScrollPane sp = new JScrollPane(textArea);
+
+        //for undo/redo
+        textArea.getDocument().addUndoableEditListener(new UndoableEditListener() {
+            @Override
+            public void undoableEditHappened(UndoableEditEvent e) {
+                undoManager.addEdit(e.getEdit());
+                update();
+            }
+        });
 
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(sp);
+
+        //enabling text drag in JTextArea
+        textArea.setDragEnabled(true);
 
         setJMenuBar(menuBar);
         menuBar.add(this.file);
@@ -62,7 +85,7 @@ class Editor extends JFrame implements ActionListener {
         //File Menu
         newFile.addActionListener(this);
         newFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
-        file.add(newFile);
+        file.add(this.newFile);
 
         openFile.addActionListener(this);
         openFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
@@ -71,10 +94,6 @@ class Editor extends JFrame implements ActionListener {
         saveFile.addActionListener(this);
         saveFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
         file.add(this.saveFile);
-
-//        saveAs.addActionListener(this);
-//        saveAs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK + InputEvent.SHIFT_MASK));
-//        file.add(saveAs);
 
         file.addSeparator();
 
@@ -89,14 +108,13 @@ class Editor extends JFrame implements ActionListener {
         file.add(this.close);
 
         //Edit Menu
-//TODO: fix and implement undo and redo action listener
+        undo.setEnabled(false);
         undo.addActionListener(this);
-        undo.setText("Undo");
         undo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_MASK));
         edit.add(this.undo);
 
+        redo.setEnabled(false);
         redo.addActionListener(this);
-        redo.setText("Redo");
         redo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_MASK + InputEvent.SHIFT_MASK));
         edit.add(this.redo);
 
@@ -121,17 +139,12 @@ class Editor extends JFrame implements ActionListener {
         paste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_MASK));
         edit.add(paste);
 
-        makeToolbar();
+        return menuBar;
     }
-
-//    public void tabPane() {
-//        JTabbedPane tabbedPane = new JTabbedPane();
-//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == close) {
-            saveOld(); //currently is not asking to save work when exiting application
             System.exit(0);
         } else if (e.getSource() == openFile) {
             openFile();
@@ -142,19 +155,33 @@ class Editor extends JFrame implements ActionListener {
 
         //creates a new file
         if (e.getSource() == newFile) {
-            textArea.setText(" ");
+            textArea.setText("");
         }
 
         //print textArea
         if (e.getSource() == print) {
             Print.printComponent(textArea);
         }
+        //undo
+        if (e.getSource() == undo) {
+            try {
+                undoManager.undo();
+            } catch (Exception e1) {
+                System.err.println(e1.getMessage());
+            }
+        }
 
+        //redo
+        if (e.getSource() == redo) {
+            try {
+                undoManager.redo();
+            } catch (Exception e1) {
+                System.err.println(e1.getMessage());
+            }
+        }
     }
 
     private JToolBar makeToolbar() {
-        //TODO: fix the toolbar actionListener. Currently is not doing anything if copy/paste/cut button is press
-
         //Actions
         DefaultEditorKit.CutAction cutAction = new DefaultEditorKit.CutAction();
         DefaultEditorKit.CopyAction copyAction = new DefaultEditorKit.CopyAction();
@@ -207,6 +234,39 @@ class Editor extends JFrame implements ActionListener {
         });
         toolbar.addSeparator();
 
+
+        // redo and undo buttons
+        undoButton.setEnabled(false);
+        undoButton.setToolTipText("Undo");
+        undoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    undoManager.undo();
+                } catch (CannotUndoException e2) {
+                    System.err.println(e2.getMessage());
+                }
+                update();
+            }
+        });
+        toolbar.add(undoButton);
+
+        redoButton.setEnabled(false);
+        redoButton.setToolTipText("Redo");
+        redoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    undoManager.redo();
+                } catch (CannotRedoException e3) {
+                    System.err.println(e3.getMessage());
+                }
+            }
+        });
+        toolbar.add(redoButton);
+
+        toolbar.addSeparator();
+
         toolbar.add(cutButton);
         cutButton.setToolTipText("Cut");
         cutButton.addActionListener(cutAction);
@@ -219,25 +279,7 @@ class Editor extends JFrame implements ActionListener {
         pasteButton.addActionListener(pasteAction);
         toolbar.add(pasteButton);
 
-        toolbar.addSeparator();
-
         return toolbar;
-    }
-
-//    private void saveAs() {
-//        if (dialog.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-//            saveFile();
-//        }
-//    }
-
-    //an option to save current work when exiting application
-    private void saveOld() {
-        if (changed) {
-            if (JOptionPane.showConfirmDialog(this, "Would you like to save " + dialog.getSelectedFile().getAbsolutePath()
-                    + "?", "Save", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                saveFile();
-            }
-        }
     }
 
     private void openFile() {
@@ -271,6 +313,15 @@ class Editor extends JFrame implements ActionListener {
                 System.out.println(ex.getMessage());
             }
         }
+    }
+
+    //updating for undo/redo
+    public void update() {
+        this.undo.setEnabled(undoManager.canUndo());
+        this.redo.setEnabled(undoManager.canRedo());
+
+        undoButton.setEnabled(undoManager.canUndo());
+        redoButton.setEnabled(undoManager.canRedo());
     }
 
     public static void createAndShowGUI() {

@@ -1,6 +1,5 @@
-import com.jtattoo.plaf.texture.TextureLookAndFeel;
-
 import javax.swing.*;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 /**
  * Created by abner on 1/13/14.
@@ -9,12 +8,10 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            //JTattoo.jar
-            UIManager.setLookAndFeel(new TextureLookAndFeel());
+            UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
-
         // Schedule a job for the event dispatch thread:
         // creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {

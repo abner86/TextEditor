@@ -10,11 +10,7 @@ import java.awt.print.PrinterJob;
  */
 
 /*
-This class implements Printable in order to print any text in the textfield.
-The printComponent will be implemented and call from the event in the Editor class.
- */
-/*
-This class implements Printable in order to print any text in the textfield.
+This class implements Printable in order to print any text in the text field.
 The printComponent will be implemented and call from the event in the Editor class.
  */
 
